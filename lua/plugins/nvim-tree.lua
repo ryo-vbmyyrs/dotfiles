@@ -57,7 +57,7 @@ return {
               exclude = { '.git', 'target', 'build' },
           },
       },
-      on_attach = "default",
+      on_attach = require('plugins/actions/nvim-tree-actions').on_attach,
     }
   end,
 }
