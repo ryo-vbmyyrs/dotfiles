@@ -17,19 +17,21 @@ vim.g.maplocalleader = " "
 --   term_mode = 't',
 --   command_mode = 'c',
 
--- Normal --
+
+
+-- Normal Mode --
 -- Better window navigation
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
+keymap("n", "<leader>h", "<C-w>h", opts)
+keymap("n", "<leader>j", "<C-w>j", opts)
+keymap("n", "<leader>k", "<C-w>k", opts)
+keymap("n", "<leader>l", "<C-w>l", opts)
 
 -- New tab
-keymap("n", "tl", ":tabedit", opts)
+keymap("n", "<C-n>", ":tabedit", opts)
 
 -- move tab
-keymap("n", "<leader>h", "gT", opts) -- to left
-keymap("n", "<leader>l", "gt", opts) -- to right
+keymap("n", "<C-h>", "gT", opts) -- to left
+keymap("n", "<C-l>", "gt", opts) -- to right
 
 -- Split window
 keymap("n", "ss", ":split<Return><C-w>w", opts)
@@ -54,12 +56,18 @@ keymap("n", "<leader>O", "O<Esc>", opts)
 -- redo
 keymap("n", "rr", "<C-r>", opts)
 
+-- search word cursor on
+keymap("n", "*", "*Nzz", opts)
 
--- Insert --
--- Press jk fast to exit insert mode
+
+
+-- Insert Mode --
+-- Press jj fast to exit insert mode
 keymap("i", "jj", "<ESC>", opts)
 
--- Visual --
+
+
+-- Visual Mode --
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
