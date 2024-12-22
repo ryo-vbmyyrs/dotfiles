@@ -27,15 +27,15 @@ keymap("n", "<leader>k", "<C-w>k", opts)
 keymap("n", "<leader>l", "<C-w>l", opts)
 
 -- New tab
-keymap("n", "<C-n>", ":tabedit", opts)
+keymap("n", "<leader>n", ":tabnew<CR>", opts)
 
 -- move tab
 keymap("n", "<C-h>", "gT", opts) -- to left
 keymap("n", "<C-l>", "gt", opts) -- to right
 
 -- Split window
-keymap("n", "ss", ":split<Return><C-w>w", opts)
-keymap("n", "sv", ":vsplit<Return><C-w>w", opts)
+keymap("n", "<leader>sk", ":split<Return><C-w>w", opts)
+keymap("n", "<leader>sl", ":vsplit<Return><C-w>w", opts)
 
 -- Select all
 keymap("n", "<C-a>", "gg<S-v>G", opts)
