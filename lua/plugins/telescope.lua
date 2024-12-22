@@ -5,11 +5,11 @@ return {
       mappings = {
           -- insert mode
           i = {
-              ['<C-h>'] = 'which_key',
+              ['?'] = 'which_key',
           },
           -- normal mode
           n = {
-              ['<C-h>'] = 'which_key',
+              ['?'] = 'which_key',
           },
       },
       winblend = 20,
@@ -19,5 +19,6 @@ return {
     vim.keymap.set('n', '<C-p>', builtin.find_files, { desc = 'Telescope find files' })
     vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
     vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+    vim.keymap.set('n', '<leader>fc', builtin.commands,  { desc = 'Telescope find commands' })
   end
 }
