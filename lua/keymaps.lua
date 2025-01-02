@@ -84,4 +84,4 @@ keymap("v", "<C-p>", '"0p', opts)
 
 
 -- Terminal Mode
-keymap("t", "jj", "<C-\\><C-n>", opts)
+keymap("t", "jj", "<C-\\><C-n>", term_opts)
