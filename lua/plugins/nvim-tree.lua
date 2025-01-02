@@ -20,7 +20,7 @@ return {
   keys = {
     {
         mode = "n",
-        "<C-n>",
+        "<C-t>",
         "<cmd>NvimTreeToggle<CR>",
         desc = "NvimTreeをトグルする"
     },

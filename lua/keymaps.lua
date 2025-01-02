@@ -21,13 +21,13 @@ vim.g.maplocalleader = " "
 
 -- Normal Mode --
 -- Better window navigation
-keymap("n", "<leader>h", "<C-w>h", opts)
-keymap("n", "<leader>j", "<C-w>j", opts)
-keymap("n", "<leader>k", "<C-w>k", opts)
-keymap("n", "<leader>l", "<C-w>l", opts)
+keymap("n", "<leader>wh", "<C-w>h", opts)
+keymap("n", "<leader>wj", "<C-w>j", opts)
+keymap("n", "<leader>wk", "<C-w>k", opts)
+keymap("n", "<leader>wl", "<C-w>l", opts)
 
 -- New tab
-keymap("n", "<leader>n", ":tabnew<CR>", opts)
+keymap("n", "<C-n>", ":tabnew<CR>", opts)
 
 -- move tab
 keymap("n", "<C-h>", "gT", opts) -- to left
@@ -80,3 +80,8 @@ keymap("v", "L", "$h", opts)
 
 -- 0番レジスタを使いやすくした
 keymap("v", "<C-p>", '"0p', opts)
+
+
+
+-- Terminal Mode
+keymap("t", "jj", "<C-\\><C-n>", opts)
