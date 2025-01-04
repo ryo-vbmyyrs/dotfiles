@@ -16,7 +16,7 @@ local function actionsMenu(nd)
         sorter = require('telescope.sorters').get_generic_fuzzy_sorter(),
         attach_mappings = function(prompt_buffer_number)
             local actions = require 'telescope.actions'
-    
+
             -- On item select
             actions.select_default:replace(function()
                 -- Closing the picker
@@ -27,7 +27,7 @@ local function actionsMenu(nd)
             return true
         end,
     }
-  
+
     -- Opening the menu
     require('telescope.pickers')
         .new({ prompt_title = 'Command', layout_config = { width = 0.3, height = 0.5 } }, default_options)
@@ -89,9 +89,9 @@ local command = {
     { 'f',     api.live_filter.start,          'Filter start' },
     { 'F',     api.live_filter.clear,          'Filter end' },
     { 'm',     api.marks.toggle,               'Toggle Bookmark' },
-  
+
     -- { '<2-LeftMouse>',  node.open.edit,        'Open' },
-  
+
     { '<Space>', actionsMenu,                  'Command' },
 }
 
@@ -109,7 +109,7 @@ function M.on_attach(bufnr)
     local opts = function(desc)
         return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, nowait = true }
     end
-  
+
     for _, cmd in pairs(command) do
         if (string.len(cmd[1]) > 0) then
             vim.keymap.set('n', cmd[1], cmd[2], opts(cmd[3]))
