@@ -9,15 +9,15 @@ return {
                 comments    = 'NONE',
                 strings     = 'NONE',
                 keywords    = 'NONE',
-                functions   = 'bold',
+                functions   = 'strikethrough',
                 variables   = 'NONE',
-                diagnostics = 'underline',
+                diagnostics = 'undercurl',
             },
             disable = {
                 background = true,
             },
             custom_highlights = {
-                MatchParen = { fg = colors.none, bg = colors.none, style = 'bold,underline' },
+                MatchParen = { fg = colors.none, bg = colors.none, style = 'strikethrough,undercurl' },
             },
             custom_colors = {
                 mypink = '#FFB2CC',
