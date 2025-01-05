@@ -18,6 +18,7 @@ return {
             },
             custom_highlights = {
                 MatchParen = { fg = colors.none, bg = colors.none, style = 'strikethrough,undercurl' },
+                Visual = { bg = colors.light_green },
             },
             custom_colors = {
                 mypink = '#FFB2CC',
