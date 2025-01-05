@@ -2,7 +2,7 @@ return {
     'nvim-treesitter/nvim-treesitter',
     version = '*',
     config = function()
-        require('nvim-treesitter').setup {
+        require('nvim-treesitter.configs').setup {
             ensure_installed = { 'lua', 'typescript', 'tsx', 'javascript', 'jsdoc', 'html', 'python', 'apex' },
             sync_install = true,
             auto_install = true,
