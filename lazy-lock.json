@@ -22,6 +22,7 @@
   "nvim-web-devicons": { "branch": "master", "commit": "5740b7382429d20b6ed0bbdb0694185af9507d44" },
   "onenord.nvim": { "branch": "main", "commit": "749ee2f7fdeb9a02f25195d4850d2ff16240c863" },
   "plenary.nvim": { "branch": "master", "commit": "2d9b06177a975543726ce5c73fca176cedbffe9d" },
+  "salesforce.nvim": { "branch": "main", "commit": "f2aa6bde18bf460a3c4131d56e7ded90da71bff6" },
   "telescope.nvim": { "branch": "master", "commit": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026" },
   "toggleterm.nvim": { "branch": "main", "commit": "50ea089fc548917cc3cc16b46a8211833b9e3c7c" }
 }
