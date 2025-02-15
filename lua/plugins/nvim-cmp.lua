@@ -32,7 +32,7 @@ return {
     config = function()
         local cmp = require("cmp")
         local types = require('cmp.types')
-            vim.opt.completeopt = { "menu", "menuone", "noselect" }
+        vim.opt.completeopt = { "menu", "menuone" }
         cmp.setup({
             snippet = {
                 expand = function(args)
@@ -55,7 +55,7 @@ return {
                 ['<C-k>']     = cmp.mapping.select_prev_item({ behavior = types.cmp.SelectBehavior.Insert }),
                 ["<C-d>"]     = cmp.mapping.scroll_docs(-4),
                 ["<C-f>"]     = cmp.mapping.scroll_docs(4),
-                ["<CR>"]      = cmp.mapping.confirm({ select = false }),
+                ["<CR>"]      = cmp.mapping.confirm({ select = true }),
             }),
             sources = cmp.config.sources({
                 { name = "nvim_lsp" },
