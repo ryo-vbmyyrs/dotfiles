@@ -60,6 +60,7 @@ return {
             sources = cmp.config.sources({
                 { name = "nvim_lsp" },
                 { name = "nvim_lua" },
+                { name = "render-markdown" },
             }, {
                 { name = "buffer" },
                 { name = "path" },

@@ -21,6 +21,7 @@ return {
             options = {
                 globalstatus = true,
                 component_separators = { left = '', right = '' },
+                theme = 'solarized_dark',
             },
         }
     end
