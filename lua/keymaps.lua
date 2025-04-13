@@ -26,12 +26,8 @@ keymap("n", "<leader>j", "<C-w>j", opts)
 keymap("n", "<leader>k", "<C-w>k", opts)
 keymap("n", "<leader>l", "<C-w>l", opts)
 
--- New tab
-keymap("n", "<C-n>", ":tabnew<CR>", opts)
-
--- move tab
-keymap("n", "<C-h>", "gT", opts) -- to left
-keymap("n", "<C-l>", "gt", opts) -- to right
+-- New Buffer
+keymap("n", "<C-n>", ":ene<CR>", opts)
 
 -- Split window
 keymap("n", "<leader>sk", ":split<Return><C-w>w", opts)
