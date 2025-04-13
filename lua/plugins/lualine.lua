@@ -21,7 +21,8 @@ return {
             options = {
                 globalstatus = true,
                 component_separators = { left = '', right = '' },
-                theme = 'solarized_dark',
+                -- theme = 'solarized_dark',
+                theme = 'vscode',
             },
         }
     end
