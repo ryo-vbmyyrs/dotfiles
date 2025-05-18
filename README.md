@@ -1,3 +1,4 @@
+# Install
 ## Font
 Need to install and activate Nerd Font.
 
@@ -34,19 +35,18 @@ Type `:Mason` to install lsp.
     - Markdown
         * marksman
 
-## Avante(github copilot)
+# Avante(github copilot)
 Enable to chat with github copilot (or other AI) on Neovim.
 
-### Usage
-
-#### StartUp
+## StartUp
 To start using github copilot via avante.nvim,
 1. Open Neovim
 2. Type `:Copilot auth`.
 3. Then open dialog to notice one time password and URL for login to github.
 4. Login to my account and type one time password.
 
-#### Commands
+## Usage
+### Commands
 Commands list frequently use.
 If want to know about other commands, see help by type `:h avante` and then search "Usage" section.
 |command|Description|Additional Info|

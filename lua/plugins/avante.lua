@@ -15,7 +15,8 @@ return {
         auto_suggestions_provider = "copilot",
         copilot = {
             model = "gpt-4o",
-            max_tokens = 4096,
+            -- model = 'gpt-4.5'
+            max_tokens = 8192,
         },
         behaviour = {
             auto_suggesions = false,

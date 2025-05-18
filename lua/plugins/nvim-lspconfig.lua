@@ -1,3 +1,16 @@
+vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(args)
+        local bufnr = args.buf
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if client.server_capabilities.completionProvider then
+            vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
+        end
+        if client.server_capabilities.definitionProvider then
+            vim.bo[bufnr].tagfunc = "v:lua.vim.lsp.tagfunc"
+        end
+    end,
+})
+
 -- keymaps
 vim.keymap.set('n', '[',  '<cmd>lua vim.lsp.buf.hover()<CR>')       -- show information where cursor on
 vim.keymap.set('n', ']',  '<cmd>lua vim.lsp.buf.definition()<CR>')  -- jump to definition
@@ -25,5 +38,8 @@ return {
     lazy = false,
     config = function()
         local lspconfig = require('lspconfig')
+        require('lsp/lua-ls')
+        require('lsp/apex-ls')
+        require('lsp/lwc-ls')
     end,
 }
