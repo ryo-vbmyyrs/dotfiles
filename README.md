@@ -1,3 +1,8 @@
+# IMPORTANT!!!!!
+
+This configuration need Neovim >= 0.11.
+Must update your Neovim.
+
 # Install
 ## Font
 Need to install and activate Nerd Font.
