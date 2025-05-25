@@ -37,9 +37,9 @@ return {
     version = "*",
     lazy = false,
     config = function()
-        local lspconfig = require('lspconfig')
-        require('lsp/lua-ls')
-        require('lsp/apex-ls')
-        require('lsp/lwc-ls')
+        -- 共通の設定
+        vim.lsp.config('*', {
+            capabilities = require('cmp_nvim_lsp').default_capabilities(),
+        })
     end,
 }

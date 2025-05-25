@@ -5,6 +5,7 @@ require("keymaps")
 require("colorscheme")
 require("filetype")
 require("command")
+require('lsp')
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
