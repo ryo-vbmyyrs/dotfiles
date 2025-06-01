@@ -5,6 +5,22 @@ return {
         'nvim-lua/plenary.nvim',
         'nvim-treesitter/nvim-treesitter',
     },
+    cmd = {
+        'SalesforceExecuteFile',
+        'SalesforceToggleCommandLineDebug',
+        'SalesforceToggleLogFileDebug',
+        'SalesforceRefreshOrgInfo',
+        'SalesforceClosePopup',
+        'SalesforceRefocusPopup',
+        'SalesforceExecuteCurrentMethod',
+        'SalesforceExecuteCurrentClass',
+        'SalesforcePushToOrg',
+        'SalesforceRetrieveFromOrg',
+        'SalesforceDiffFile',
+        'SalesforceSetDefaultOrg',
+        'SalesforceCreateLightningComponent',
+        'SalesforceCreateApex',
+    },
     config = function()
         require('salesforce').setup {
             debug = {

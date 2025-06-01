@@ -35,7 +35,7 @@ vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float)         -- open diag
 return {
     "neovim/nvim-lspconfig",
     version = "*",
-    lazy = false,
+    lazy = true,
     config = function()
         -- 共通の設定
         vim.lsp.config('*', {

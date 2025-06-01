@@ -10,6 +10,8 @@ return {
         -- optional
         "zbirenbaum/copilot.lua", -- for provider = "copilot"
     },
+    cmd = { 'AvanteAsk' },
+    keys = { '<leader>aa' },
     opts = {
         provider = "copilot",
         auto_suggestions_provider = "copilot",

@@ -4,6 +4,7 @@ return {
     dependencies = {
         'neovim/nvim-lspconfig',
     },
+    event = 'VeryLazy',
     config = function()
         require('nvim-navic').setup({
             icons = {
