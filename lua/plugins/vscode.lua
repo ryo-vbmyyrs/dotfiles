@@ -11,5 +11,8 @@ return {
         })
 
         vim.cmd("colorscheme vscode")
+
+        -- Re-apply custom highlight groups after colorscheme is set
+        require('plugins.actions.colorscheme')
     end
 }

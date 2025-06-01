@@ -45,8 +45,14 @@ return {
                 end,
             },
             window = {
-                completion = cmp.config.window.bordered(),
-                documentation = cmp.config.window.bordered(),
+                completion = cmp.config.window.bordered({
+                    winhighlight = 'Normal:Pmenu,FloatBorder:RyoPmenuBorder,CursorLine:PmenuSel,Search:None',
+                    border = 'double',
+                }),
+                documentation = cmp.config.window.bordered({
+                    winhighlight = 'FloatBorder:RyoPmenuBorder',
+                    border = 'rounded',
+                }),
             },
             mapping = cmp.mapping.preset.insert({
                 ["<C-Space>"] = function()
