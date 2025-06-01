@@ -37,9 +37,5 @@ return {
     version = "*",
     lazy = true,
     config = function()
-        -- 共通の設定
-        vim.lsp.config('*', {
-            capabilities = require('cmp_nvim_lsp').default_capabilities(),
-        })
     end,
 }

@@ -20,19 +20,24 @@ vim.api.nvim_set_hl(0, 'CmpItemKindUnit'        , { link='CmpItemKindKeyword' })
 return {
     "hrsh7th/nvim-cmp",
     dependencies = {
-        "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-nvim-lua",
-        "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-path",
-        "hrsh7th/cmp-cmdline",
-        "saadparwaiz1/cmp_luasnip",
-        "L3MON4D3/LuaSnip",
-        "onsails/lspkind-nvim",
+        { "hrsh7th/cmp-nvim-lsp", lazy = true },
+        { "hrsh7th/cmp-nvim-lua", lazy = true },
+        { "hrsh7th/cmp-buffer", lazy = true },
+        { "hrsh7th/cmp-path", lazy = true },
+        { "hrsh7th/cmp-cmdline", lazy = true },
+        { "saadparwaiz1/cmp_luasnip", lazy = true },
+        { "L3MON4D3/LuaSnip", lazy = true },
+        { "onsails/lspkind-nvim", lazy = true },
     },
+    event = { 'VeryLazy' },
     config = function()
         local cmp = require("cmp")
         local types = require('cmp.types')
         vim.opt.completeopt = { "menu", "menuone" }
+        -- 共通の設定
+        vim.lsp.config('*', {
+            capabilities = require('cmp_nvim_lsp').default_capabilities(),
+        })
         cmp.setup({
             snippet = {
                 expand = function(args)
