@@ -1,5 +1,12 @@
+local path
+if vim.fn.has('mac') then
+    path = '~/.local/share/nvim/mason/share/apex-language-server/apex-jorje-lsp.jar'
+else
+    path = '~/AppData/nvim-data/mason/share/apex-language-server/apex-jorje-lsp.jar'
+end
+
 vim.lsp.config('apex_ls', {
-    cmd = { 'java', '-jar', vim.fn.expand('~/.local/share/nvim/mason/share/apex-language-server/apex-jorje-lsp.jar') },
+    cmd = { 'java', '-jar', vim.fn.expand(path) },
     filetypes = { 'apex' },
     flags = {
         debounce_text_changes = 150,

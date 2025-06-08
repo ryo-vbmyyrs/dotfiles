@@ -1,3 +1,13 @@
+vim.api.nvim_create_user_command('AvanteResizeWide', function ()
+    require('avante.config').override({ windows = { width = 70 } })
+    vim.cmd('AvanteRefresh')
+end, {})
+
+vim.api.nvim_create_user_command('AvanteResizeNormal', function ()
+    require('avante.config').override({ windows = { width = 30 } })
+    vim.cmd('AvanteRefresh')
+end, {})
+
 return {
     "yetone/avante.nvim",
     version = false, -- Never set this value to "*"! Never!
@@ -10,17 +20,47 @@ return {
         -- optional
         "zbirenbaum/copilot.lua", -- for provider = "copilot"
     },
+
     cmd = { 'AvanteAsk' },
     keys = { '<leader>aa' },
     opts = {
         provider = "copilot",
-        auto_suggestions_provider = "copilot",
-        copilot = {
-            model = "claude-3.7-sonnet",
+        providers = {
+            copilot = {
+                model = "claude-sonnet-4",
+            },
         },
+        disabled_tools = {
+            'replace_in_file',
+            'create_file',
+            'rename_file',
+            'delete_file',
+            'create_dir',
+            'rename_dir',
+            'delete_dir',
+            'str_replace',
+            'git_commit',
+            'write_to_file',
+            'insert',
+            'bash',
+            'python',
+            'web_search',
+        },
+        -- auto_suggestions_provider = "copilot",
         behaviour = {
-            auto_suggesions = false,
+            auto_focus_sidebar = false,
+            auto_suggestions = false,
+            auto_suggestions_respect_ignore = false,
             auto_set_highlight_group = true,
+            auto_set_keymaps = true,
+            auto_apply_diff_after_generation = false,
+            jump_result_buffer_on_finish = false,
+            support_paste_from_clipboard = false,
+            minimize_diff = true,
+            enable_token_counting = true,
+            use_cwd_as_project_root = false,
+            auto_focus_on_diff_view = false,
+            auto_approve_tool_permissions = false,
         },
         mappings = {
             diff = {
