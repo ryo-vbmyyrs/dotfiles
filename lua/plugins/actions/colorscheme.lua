@@ -28,6 +28,7 @@ local c = {
 
 local hl = {
     RyoPmenuBorder = { fg = c.ajisai },
+    AvanteSidebarWinSeparator = { fg = c.asagao },
 }
 
 local set_hl = function(tbl)
