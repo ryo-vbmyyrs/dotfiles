@@ -2,6 +2,7 @@ vim.api.nvim_create_user_command('AvanteResizeWide', function ()
     require('avante.config').override({ windows = { width = 70 } })
     vim.cmd('AvanteRefresh')
 end, {})
+vim.api.nvim_set_keymap('n', '<leader>aw', ':AvanteResizeWide<CR>', {} )
 
 vim.api.nvim_create_user_command('AvanteResizeNormal', function ()
     require('avante.config').override({ windows = { width = 30 } })
