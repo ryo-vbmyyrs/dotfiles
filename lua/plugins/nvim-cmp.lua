@@ -28,6 +28,7 @@ return {
         { "saadparwaiz1/cmp_luasnip", lazy = true },
         { "L3MON4D3/LuaSnip", lazy = true },
         { "onsails/lspkind-nvim", lazy = true },
+        { 'brenoprata10/nvim-highlight-colors', lazy = true },
     },
     event = { 'VeryLazy' },
     config = function()
@@ -77,11 +78,19 @@ return {
                 { name = "path" },
             }),
             formatting = {
-                format = require('lspkind').cmp_format({
-                    mode = 'symbol',
-                    preset = 'codicons',
-                }),
-            },
+                format = function (entry, item)
+                    local color_item = require('nvim-highlight-colors').format(entry, { kind = item.kind })
+                    item = require('lspkind').cmp_format({
+                        mode = 'symbol',
+                        preset = 'codicons',
+                    })(entry, item)
+                    if color_item.abbr_hl_group then
+                        item.kind_hl_group = color_item.abbr_hl_group
+                        item.kind = color_item.abbr
+                    end
+                    return item
+                end
+            }
         })
 
         cmp.setup.cmdline(':', {
