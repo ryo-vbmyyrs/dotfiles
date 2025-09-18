@@ -2,7 +2,7 @@ return {
     'nvim-treesitter/nvim-treesitter',
     version = '*',
     config = function()
-        require('nvim-treesitter.configs').setup {
+        require('nvim-treesitter.configs').setup({
             ensure_installed = {
                 'apex',
                 'html',
@@ -33,6 +33,6 @@ return {
             indent = {
                 enable = true,
             },
-        }
-    end
+        })
+    end,
 }

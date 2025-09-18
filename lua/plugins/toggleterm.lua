@@ -1,9 +1,9 @@
 return {
     'akinsho/toggleterm.nvim',
-    version = "*",
+    version = '*',
     keys = { '<leader>tt' },
     config = function()
-        require("toggleterm").setup{
+        require('toggleterm').setup({
             size = 20,
             open_mapping = [[<leader>tt]],
             start_in_insert = true,
@@ -29,18 +29,23 @@ return {
                 enabled = false,
                 name_formatter = function(term)
                     return term.name
-                end
+                end,
             },
-        }
+        })
 
         -- ここでlazygitを開く設定を追加している
-        local Terminal  = require('toggleterm.terminal').Terminal
-        local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
+        local Terminal = require('toggleterm.terminal').Terminal
+        local lazygit = Terminal:new({ cmd = 'lazygit', hidden = true })
 
         function _lazygit_toggle()
             lazygit:toggle()
         end
 
-        vim.api.nvim_set_keymap("n", "<leader>lg", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true})
-    end
+        vim.api.nvim_set_keymap(
+            'n',
+            '<leader>lg',
+            '<cmd>lua _lazygit_toggle()<CR>',
+            { noremap = true, silent = true }
+        )
+    end,
 }

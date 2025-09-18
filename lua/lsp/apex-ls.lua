@@ -11,6 +11,6 @@ vim.lsp.config('apex_ls', {
         apex = {
             enable_semantic_errors = true,
             enable_completion_statistics = true,
-        }
-    }
+        },
+    },
 })

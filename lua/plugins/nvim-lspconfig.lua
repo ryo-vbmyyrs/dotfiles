@@ -1,21 +1,21 @@
-vim.api.nvim_create_autocmd("LspAttach", {
+vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(args)
         local bufnr = args.buf
         local client = vim.lsp.get_client_by_id(args.data.client_id)
         if client.server_capabilities.completionProvider then
-            vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
+            vim.bo[bufnr].omnifunc = 'v:lua.vim.lsp.omnifunc'
         end
         if client.server_capabilities.definitionProvider then
-            vim.bo[bufnr].tagfunc = "v:lua.vim.lsp.tagfunc"
+            vim.bo[bufnr].tagfunc = 'v:lua.vim.lsp.tagfunc'
         end
     end,
 })
 
 -- keymaps
-vim.keymap.set('n', '[',  '<cmd>lua vim.lsp.buf.hover()<CR>')       -- show information where cursor on
-vim.keymap.set('n', ']',  '<cmd>lua vim.lsp.buf.definition()<CR>')  -- jump to definition
-vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')  -- show list where the variable cursor on is referenced
-vim.keymap.set('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<CR>')      -- rename the variable
+vim.keymap.set('n', '[', '<cmd>lua vim.lsp.buf.hover()<CR>') -- show information where cursor on
+vim.keymap.set('n', ']', '<cmd>lua vim.lsp.buf.definition()<CR>') -- jump to definition
+vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>') -- show list where the variable cursor on is referenced
+vim.keymap.set('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<CR>') -- rename the variable
 
 -- diagnostics (See `:h vim.diagnostic.config`)
 vim.diagnostic.config({
@@ -30,12 +30,11 @@ vim.cmd([[
     highlight DiagnosticUnderlineInfo gui=undercurl
     highlight DiagnosticUnderlineHint gui=undercurl
 ]])
-vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float)         -- open diagnostic in float
+vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float) -- open diagnostic in float
 
 return {
-    "neovim/nvim-lspconfig",
-    version = "*",
+    'neovim/nvim-lspconfig',
+    version = '*',
     lazy = true,
-    config = function()
-    end,
+    config = function() end,
 }

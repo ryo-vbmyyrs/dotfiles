@@ -1,8 +1,8 @@
 vim.o.background = 'dark'
 
 return {
-    "Mofiqul/vscode.nvim",
-    config = function ()
+    'Mofiqul/vscode.nvim',
+    config = function()
         require('vscode').setup({
             italic_comments = false,
             underline_links = true,
@@ -10,9 +10,9 @@ return {
             terminal_colors = true,
         })
 
-        vim.cmd("colorscheme vscode")
+        vim.cmd('colorscheme vscode')
 
         -- Re-apply custom highlight groups after colorscheme is set
         require('plugins.actions.colorscheme')
-    end
+    end,
 }

@@ -1,4 +1,6 @@
-vim.keymap.set('n', '<leader>nd', function() require('noice').cmd('dismiss') end)
+vim.keymap.set('n', '<leader>nd', function()
+    require('noice').cmd('dismiss')
+end)
 
 return {
     'folke/noice.nvim',
@@ -32,6 +34,6 @@ return {
                 ['vim.lsp.util.stylize_markdown'] = true,
                 ['cmp.entry.get_documentation'] = true,
             },
-        }
-    }
+        },
+    },
 }

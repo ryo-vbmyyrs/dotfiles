@@ -1,5 +1,5 @@
 return {
-    "zbirenbaum/copilot.lua",
+    'zbirenbaum/copilot.lua',
     lazy = true,
     opts = {},
 }

@@ -1,12 +1,12 @@
 local options = {
-    encoding = "utf-8",
-    fileencoding = "utf-8",
+    encoding = 'utf-8',
+    fileencoding = 'utf-8',
     title = true,
     backup = false,
-    clipboard = "unnamedplus",
+    clipboard = 'unnamedplus',
     cmdheight = 2,
     conceallevel = 0,
-    mouse = "a",
+    mouse = 'a',
     showmode = false,
     showtabline = 2,
     smartindent = true,
@@ -18,18 +18,18 @@ local options = {
     cursorline = true,
     number = true,
     numberwidth = 4,
-    signcolumn = "yes",
+    signcolumn = 'yes',
     winblend = 0,
-    wildoptions = "pum",
+    wildoptions = 'pum',
     pumblend = 5,
-    background = "dark",
+    background = 'dark',
     wrap = false,
     scrolloff = 8, -- カーソルの上下に少なくともこの数の行だけ表示する（カーソル行が端にならない）
     sidescrolloff = 8, -- scrolloffの左右版
-    guifont = "monospace:h17",
+    guifont = 'monospace:h17',
 
     -- 自動補完
-    completeopt = { "menuone", "noselect" },
+    completeopt = { 'menuone', 'noselect' },
     pumheight = 10,
 
     -- tab関連
@@ -45,15 +45,14 @@ local options = {
     -- ウィンドウの分割 :vsplit時のウィンドウ移動keymapのためfalseにしておく
     splitbelow = false, -- オンのとき、ウィンドウを横分割すると新しいウィンドウはカレントウィンドウの下に開かれる
     splitright = true, -- オンのとき、ウィンドウを縦分割すると新しいウィンドウはカレントウィンドウの右に開かれる
-
 }
 
-vim.opt.shortmess:append("c")
+vim.opt.shortmess:append('c')
 
 for k, v in pairs(options) do
     vim.opt[k] = v
 end
 
-vim.cmd("set whichwrap+=<,>,[,],h,l")
+vim.cmd('set whichwrap+=<,>,[,],h,l')
 vim.cmd([[set iskeyword+=-]])
 vim.cmd([[set formatoptions-=cro]]) -- TODO: this doesn't seem to work

@@ -1,44 +1,43 @@
 -- open File Tree when open
 local function open_nvim_tree()
-    require("nvim-tree.api").tree.open()
+    require('nvim-tree.api').tree.open()
 end
 
-vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+vim.api.nvim_create_autocmd({ 'VimEnter' }, { callback = open_nvim_tree })
 
 -- disable netrw
 vim.api.nvim_set_var('loaded_netrw', 1)
 vim.api.nvim_set_var('loaded_netrwPlugin', 1)
 
-
 return {
-    "nvim-tree/nvim-tree.lua",
-    version = "*",
+    'nvim-tree/nvim-tree.lua',
+    version = '*',
     lazy = false,
     dependencies = {
-        "nvim-tree/nvim-web-devicons",
+        'nvim-tree/nvim-web-devicons',
     },
     keys = {
         {
-            mode = "n",
-            "<C-t>",
-            "<cmd>NvimTreeToggle<CR>",
-            desc = "NvimTreeをトグルする"
+            mode = 'n',
+            '<C-t>',
+            '<cmd>NvimTreeToggle<CR>',
+            desc = 'NvimTreeをトグルする',
         },
         {
-            mode = "n",
-            "<C-m>",
-            "<cmd>NvimTreeFocus<CR>",
-            desc = "NvimTreeにフォーカス"
+            mode = 'n',
+            '<C-m>',
+            '<cmd>NvimTreeFocus<CR>',
+            desc = 'NvimTreeにフォーカス',
         },
     },
     config = function()
-        require("nvim-tree").setup {
+        require('nvim-tree').setup({
             git = {
                 enable = true,
                 ignore = true,
             },
             view = {
-                width = '20%'
+                width = '20%',
             },
             update_focused_file = {
                 enable = true,
@@ -50,7 +49,11 @@ return {
                 icons = {
                     glyphs = {
                         git = {
-                            unstaged = '!', renamed = '→', untracked = '?', deleted = '✗', staged = '✓'
+                            unstaged = '!',
+                            renamed = '→',
+                            untracked = '?',
+                            deleted = '✗',
+                            staged = '✓',
                         },
                     },
                 },
@@ -62,6 +65,6 @@ return {
                 },
             },
             on_attach = require('plugins/actions/nvim-tree-actions').on_attach,
-        }
+        })
     end,
 }

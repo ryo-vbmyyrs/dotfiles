@@ -22,7 +22,7 @@ return {
         'SalesforceCreateApex',
     },
     config = function()
-        require('salesforce').setup {
+        require('salesforce').setup({
             debug = {
                 to_file = false,
                 to_command_line = false,
@@ -30,7 +30,7 @@ return {
             popup = {
                 width = 100,
                 height = 20,
-                borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+                borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
             },
             file_manager = {
                 ignore_conflicts = false,
@@ -38,6 +38,6 @@ return {
             org_manager = {
                 default_org_indicator = '✓',
             },
-        }
-    end
+        })
+    end,
 }

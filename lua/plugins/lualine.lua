@@ -1,12 +1,12 @@
 return {
     'nvim-lualine/lualine.nvim',
-    version = "*",
+    version = '*',
     dependencies = {
         'nvim-tree/nvim-web-devicons',
         'SmiteshP/nvim-navic',
     },
     config = function()
-        require('lualine').setup {
+        require('lualine').setup({
             sections = {
                 lualine_a = { 'mode' },
                 lualine_b = { 'branch', 'diagnostics' },
@@ -24,6 +24,6 @@ return {
                 -- theme = 'solarized_dark',
                 theme = 'vscode',
             },
-        }
-    end
+        })
+    end,
 }
