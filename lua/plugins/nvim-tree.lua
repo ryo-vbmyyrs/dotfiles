@@ -40,6 +40,10 @@ return {
             view = {
                 width = '20%'
             },
+            update_focused_file = {
+                enable = true,
+                update_root = false,
+            },
             renderer = {
                 highlight_git = true,
                 highlight_opened_files = 'name',
