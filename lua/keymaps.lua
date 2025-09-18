@@ -60,6 +60,8 @@ keymap("n", "*", "*Nzz", opts)
 -- Insert Mode --
 -- Press jj fast to exit insert mode
 keymap("i", "jj", "<ESC>", opts)
+-- to enter back slash in macOS
+keymap('i', '<M-¥>', '\\', opts)
 
 
 
