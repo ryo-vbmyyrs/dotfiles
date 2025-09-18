@@ -53,6 +53,13 @@ keymap('n', 'rr', '<C-r>', opts)
 -- search word cursor on
 keymap('n', '*', '*Nzz', opts)
 
+-- ウィンドウリサイズのキーマップ
+vim.keymap.set('n', '<C-k>', ':resize +2<CR>', { desc = 'Increase window height' })
+vim.keymap.set('n', '<C-j>', ':resize -2<CR>', { desc = 'Decrease window height' })
+vim.keymap.set('n', '<C-[>', ':vertical resize -2<CR>', { desc = 'Decrease window width' })
+vim.keymap.set('n', '<C-]>', ':vertical resize +2<CR>', { desc = 'Increase window width' })
+vim.keymap.set('n', '<leader>w=', '<C-w>=', { desc = 'Equalize window sizes' })
+
 -- Insert Mode --
 -- Press jj fast to exit insert mode
 keymap('i', 'jj', '<ESC>', opts)
