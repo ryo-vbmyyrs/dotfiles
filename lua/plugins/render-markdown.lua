@@ -5,8 +5,8 @@ return {
         'nvim-tree/nvim-web-devicons',
     },
     version = '*',
-    ft = { 'markdown', 'noice', 'copilot-chat' },
+    ft = { 'markdown', 'noice', 'codecompanion' },
     opts = {
-        file_types = { 'markdown', 'noice', 'copilot-chat' },
+        file_types = { 'markdown', 'noice', 'codecompanion' },
     },
 }
