@@ -44,6 +44,7 @@ return {
                 update_root = false,
             },
             renderer = {
+                group_empty = true,
                 highlight_git = true,
                 highlight_opened_files = 'name',
                 icons = {

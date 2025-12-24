@@ -35,7 +35,38 @@ return {
     event = { 'VeryLazy' },
     config = function()
         local cmp = require('cmp')
+        local luasnip = require('luasnip')
         local types = require('cmp.types')
+
+        -- luasnipの設定
+        luasnip.config.set_config({
+            history = true,
+            updateevents = 'TextChanged,TextChangedI',
+            enable_autosnippets = true,
+        })
+
+        -- 言語別スニペットを読み込む
+        require('luasnip.loaders.from_lua').lazy_load({
+            paths = vim.fn.stdpath('config') .. '/lua/snippets',
+        })
+
+        -- ファイルタイプの拡張設定を追加
+        luasnip.filetype_extend('typescriptreact', { 'typescript', 'javascript' })
+        luasnip.filetype_extend('javascriptreact', { 'javascript' })
+
+        -- LuaSnipのキーマッピング
+        vim.keymap.set({ 'i', 's' }, '<C-l>', function()
+            if luasnip.expand_or_jumpable() then
+                luasnip.expand_or_jump()
+            end
+        end, { silent = true, desc = 'LuaSnip: Expand or jump' })
+
+        vim.keymap.set({ 'i', 's' }, '<C-h>', function()
+            if luasnip.jumpable(-1) then
+                luasnip.jump(-1)
+            end
+        end, { silent = true, desc = 'LuaSnip: Jump back' })
+
         vim.opt.completeopt = { 'menu', 'menuone' }
         -- 共通の設定
         vim.lsp.config('*', {
@@ -76,8 +107,15 @@ return {
                 ['<CR>'] = cmp.mapping.confirm({ select = true }),
             }),
             sources = cmp.config.sources({
-                { name = 'nvim_lsp' },
+                {
+                    name = 'nvim_lsp',
+                    entry_filter = function(entry, ctx)
+                        local kind = entry:get_kind()
+                        return kind ~= require('cmp.types').lsp.CompletionItemKind.Text
+                    end,
+                },
                 { name = 'nvim_lua' },
+                { name = 'luasnip' },
                 { name = 'render-markdown' },
             }, {
                 { name = 'buffer' },

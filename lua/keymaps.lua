@@ -82,3 +82,7 @@ keymap('v', '<C-p>', '"0p', opts)
 
 -- Terminal Mode
 keymap('t', 'jj', '<C-\\><C-n>', term_opts)
+
+local command_runner = require('config.command-runner')
+vim.keymap.set('n', '<leader>cr', command_runner.run_command, { desc = 'Run saved command' })
+vim.keymap.set('n', '<leader>ca', command_runner.add_command, { desc = 'Add command' })

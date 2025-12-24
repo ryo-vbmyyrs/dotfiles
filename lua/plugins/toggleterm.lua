@@ -15,7 +15,7 @@ return {
             shade_terminals = true,
             persist_size = true,
             persist_mode = true,
-            direction = 'float',
+            direction = 'horizontal',
             close_on_exit = true,
             clear_env = false,
             shell = vim.o.shell,
@@ -47,5 +47,18 @@ return {
             '<cmd>lua _lazygit_toggle()<CR>',
             { noremap = true, silent = true }
         )
+
+        vim.api.nvim_set_keymap(
+            'n',
+            '<leader>ts',
+            '<cmd>TermSelect<CR>',
+            { noremap = true, silent = true }
+        )
+
+        vim.keymap.set('n', '<leader>tn', function()
+            local newTerm = Terminal:new({})
+            newTerm:toggle()
+            print('executed')
+        end, { desc = 'Open new terminal' })
     end,
 }

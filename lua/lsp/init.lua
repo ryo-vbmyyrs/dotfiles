@@ -2,7 +2,6 @@
 vim.lsp.enable('apex_ls')
 vim.lsp.enable('cssls')
 vim.lsp.enable('html')
-vim.lsp.enable('java_language_server')
 vim.lsp.enable('lua_ls')
 vim.lsp.enable('lwc_ls')
 vim.lsp.enable('marksman')

@@ -63,6 +63,36 @@ local function get_os_config()
     end
 end
 
+-- jarを見つけるための関数
+local function find_equinox_launcher(jdtls_path)
+    local sep = vim.fn.has('win32') == 1 and '\\' or '/'
+    local plugins_dir = jdtls_path .. sep .. 'plugins'
+
+    -- ディレクトリが存在するか確認
+    if vim.fn.isdirectory(plugins_dir) == 0 then
+        error('Plugins directory not found: ' .. plugins_dir)
+    end
+
+    local files = vim.fn.readdir(plugins_dir, function(name)
+        return vim.startswith(name, 'org.eclipse.equinox.launcher_')
+            and vim.endswith(name, '.jar')
+            and not name:find('%.cocoa%.') -- macOS用を除外
+            and not name:find('%.gtk%.') -- Linux用を除外
+            and not name:find('%.win32%.') -- Windows native launcherを除外
+    end)
+
+    if #files == 0 then
+        error('Could not find equinox launcher jar in: ' .. plugins_dir)
+    end
+
+    local jar_path = plugins_dir .. sep .. files[1]
+    return jar_path
+end
+
+local equinox_jar = find_equinox_launcher(mason_jdtls_path)
+
+local root_dir = jdtls.setup.find_root({ '.git', 'mvnw', 'gradlew', 'pom.xml', 'build.gradle' })
+
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 local config = {
     -- The command that starts the language server
@@ -82,13 +112,7 @@ local config = {
         '--add-opens',
         'java.base/java.lang=ALL-UNNAMED',
         '-jar',
-        vim.fn.glob(
-            mason_jdtls_path
-                .. (vim.fn.has('win32') == 1 and '\\' or '/')
-                .. 'plugins'
-                .. (vim.fn.has('win32') == 1 and '\\' or '/')
-                .. 'org.eclipse.equinox.launcher_*.jar'
-        ),
+        equinox_jar,
         '-configuration',
         mason_jdtls_path .. (vim.fn.has('win32') == 1 and '\\' or '/') .. get_os_config(),
         '-data',
@@ -97,7 +121,7 @@ local config = {
 
     -- This is the default if not provided, you can remove it. Or adjust as needed.
     -- One dedicated LSP server & client will be started per unique root_dir
-    root_dir = jdtls.setup.find_root({ '.git', 'mvnw', 'gradlew', 'pom.xml', 'build.gradle' }),
+    root_dir = root_dir,
 
     -- Here you can configure eclipse.jdt.ls specific settings
     -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
@@ -124,10 +148,10 @@ local config = {
             },
             format = {
                 enabled = true,
-                -- settings = {
-                --   url = vim.fn.stdpath "config" .. "/lang-servers/intellij-java-google-style.xml",
-                --   profile = "GoogleStyle",
-                -- },
+                settings = {
+                    url = vim.uri_from_fname(root_dir .. '\\config\\eclipse-java-format.xml'),
+                    profile = 'IntelliJ-Based',
+                },
             },
         },
         signatureHelp = { enabled = true },
@@ -177,6 +201,11 @@ local config = {
     init_options = {
         bundles = {},
     },
+
+    on_attach = function(client, bufnr)
+        vim.notify('attached!')
+        local augroup = vim.api.nvim_create_augroup('jdtls_format_' .. bufnr, { clear = true })
+    end,
 
     -- Keymaps
     -- on_attach = function(client, bufnr)
