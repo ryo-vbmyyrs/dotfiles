@@ -14,6 +14,20 @@ return {
                         name = 'copilot',
                         model = 'claude-sonnet-4.5',
                     },
+                    tools = {
+                        opts = {
+                            default_tools = {
+                                'mcp',
+                            },
+                        },
+                    },
+                    variables = {
+                        ['buffer'] = {
+                            opts = {
+                                default_params = 'all',
+                            },
+                        },
+                    },
                 },
                 inline = {
                     adapter = {
