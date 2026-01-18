@@ -123,22 +123,22 @@ local function generate_throws_docs(_, snip)
 end
 
 return {
-       -- /** で展開されるJavadocスニペット
-       s({
-    trig = '/**',
-    wordTrig = true,
-}, {
-           t({ '/**', ' * ' }),
-           i(1),
-           d(2, generate_param_docs, {}),
-           d(3, generate_return_doc, {}),
-           d(4, generate_throws_docs, {}),
-           t({ '', ' */' }),
-       }),
-       -- jdoc でも展開できるようにする（バックアップ）
-       s('jdoc', {
-           t({ '/**', ' * ' }),
-           i(1),
-           t({ '', ' */' }),
-       }),
+    -- /** で展開されるJavadocスニペット
+    s({
+        trig = '/**',
+        wordTrig = true,
+    }, {
+        t({ '/**', ' * ' }),
+        i(1),
+        d(2, generate_param_docs, {}),
+        d(3, generate_return_doc, {}),
+        d(4, generate_throws_docs, {}),
+        t({ '', ' */' }),
+    }),
+    -- jdoc でも展開できるようにする（バックアップ）
+    s('jdoc', {
+        t({ '/**', ' * ' }),
+        i(1),
+        t({ '', ' */' }),
+    }),
 }

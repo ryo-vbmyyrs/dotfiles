@@ -88,36 +88,35 @@ local function generate_return_doc(_, snip)
                 i(1, '戻り値の説明'),
             })
         else
-                        -- JavaScript: 型指定あり
-                       
+            -- JavaScript: 型指定あり
             return sn(nil, {
-                                t({ '', ' * @returns {' }),
-                                i(1, 'type'),
-                                t('} '),
-                                i(2, '戻り値の説明'),
-                            })
+                t({ '', ' * @returns {' }),
+                i(1, 'type'),
+                t('} '),
+                i(2, '戻り値の説明'),
+            })
         end
     else
         return sn(nil, { t('') })
     end
 end
- 
+
 return {
-        -- /** で展開されるJSDocスニペット
-        s({
-    trig = '/**',
-    wordTrig = true,
-}, {
-            t({ '/**', ' * ' }),
-            i(1, 'description'),
-            d(2, generate_param_docs, {}),
-            d(3, generate_return_doc, {}),
-            t({ '', ' */' }),
-        }),
-        -- jsdoc でも展開できるようにする（バックアップ）
-        s('jsdoc', {
-            t({ '/**', ' * ' }),
-            i(1, '説明'),
-            t({ '', ' */' }),
-        }),
+    -- /** で展開されるJSDocスニペット
+    s({
+        trig = '/**',
+        wordTrig = true,
+    }, {
+        t({ '/**', ' * ' }),
+        i(1, 'description'),
+        d(2, generate_param_docs, {}),
+        d(3, generate_return_doc, {}),
+        t({ '', ' */' }),
+    }),
+    -- jsdoc でも展開できるようにする（バックアップ）
+    s('jsdoc', {
+        t({ '/**', ' * ' }),
+        i(1, '説明'),
+        t({ '', ' */' }),
+    }),
 }

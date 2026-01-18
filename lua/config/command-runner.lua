@@ -47,9 +47,9 @@ function M.run_command()
                     local selection = action_state.get_selected_entry()
 
                     vim.cmd('split | terminal ' .. selection.value.command)
-
-                    return true
                 end)
+
+                return true
             end,
         })
         :find()
