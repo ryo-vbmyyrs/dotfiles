@@ -75,7 +75,7 @@ return {
                                 title = 'CodeCompanion',
                                 title_pos = 'center',
                                 focusable = false,
-                                noautocmd = false,
+                                noautocmd = true,
                             },
                             win_options = {
                                 winblend = 10,
