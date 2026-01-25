@@ -25,5 +25,11 @@ return {
         vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
         vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
         vim.keymap.set('n', '<leader>fc', builtin.commands, { desc = 'Telescope find commands' })
+        vim.keymap.set(
+            'n',
+            '<leader>/',
+            builtin.current_buffer_fuzzy_find,
+            { desc = 'Telescope fuzzy find in current buffer' }
+        )
     end,
 }
