@@ -60,6 +60,12 @@ vim.keymap.set('n', '<C-[>', ':vertical resize -2<CR>', { desc = 'Decrease windo
 vim.keymap.set('n', '<C-]>', ':vertical resize +2<CR>', { desc = 'Increase window width' })
 vim.keymap.set('n', '<leader>w=', '<C-w>=', { desc = 'Equalize window sizes' })
 
+-- セミコロンでレジスタにアクセスできるようにする
+for char = string.byte('a'), string.byte('z') do
+    local letter = string.char(char)
+    vim.keymap.set({ 'n', 'v' }, ';' .. letter, '"' .. letter, { noremap = true })
+end
+
 -- Insert Mode --
 -- Press jj fast to exit insert mode
 keymap('i', 'jj', '<ESC>', opts)
@@ -76,9 +82,6 @@ keymap('v', 'J', '10j', opts)
 keymap('v', 'K', '10k', opts)
 keymap('v', 'H', '0', opts)
 keymap('v', 'L', '$h', opts)
-
--- 0番レジスタを使いやすくした
-keymap('v', '<C-p>', '"0p', opts)
 
 -- Terminal Mode
 keymap('t', 'jj', '<C-\\><C-n>', term_opts)
