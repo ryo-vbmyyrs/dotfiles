@@ -23,6 +23,9 @@ vim.diagnostic.config({
     virtual_text = false,
     signs = false,
     update_in_insert = false,
+    float = {
+        border = 'rounded',
+    },
 })
 vim.cmd([[
     highlight DiagnosticUnderlineError gui=undercurl

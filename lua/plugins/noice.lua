@@ -34,6 +34,25 @@ return {
                 ['vim.lsp.util.stylize_markdown'] = true,
                 ['cmp.entry.get_documentation'] = true,
             },
+            hover = {
+                enabled = true,
+                view = nil,
+                opts = {
+                    border = {
+                        style = 'rounded',
+                        padding = { 0, 1 },
+                    },
+                    position = { row = 2, col = 2 },
+                },
+            },
+            signature = {
+                enabled = true,
+                opts = {
+                    border = {
+                        style = 'rounded',
+                    },
+                },
+            },
         },
     },
 }
