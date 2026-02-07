@@ -12,6 +12,7 @@ return {
                     n = { ['?'] = 'which_key' },
                 },
                 winblend = 20,
+                path_display = { 'smart', 'truncate' },
             },
             pickers = {
                 find_files = {
