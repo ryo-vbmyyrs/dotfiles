@@ -23,7 +23,7 @@ local function get_workspace_dir()
             .. sep
             .. 'eclipse'
             .. sep
-            .. vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
+            .. vim.fn.fnamemodify(vim.fn.getcwd(), ':~'):gsub('[/\\~]', '_')
     else
         -- Unix-like: Use .local/share
         return home
@@ -34,7 +34,7 @@ local function get_workspace_dir()
             .. sep
             .. 'eclipse'
             .. sep
-            .. vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
+            .. vim.fn.fnamemodify(vim.fn.getcwd(), ':~'):gsub('[/\\~]', '_')
     end
 end
 
@@ -92,6 +92,9 @@ end
 local equinox_jar = find_equinox_launcher(mason_jdtls_path)
 
 local root_dir = jdtls.setup.find_root({ '.git', 'mvnw', 'gradlew', 'pom.xml', 'build.gradle' })
+if not root_dir then
+    root_dir = vim.fn.getcwd()
+end
 
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 local config = {

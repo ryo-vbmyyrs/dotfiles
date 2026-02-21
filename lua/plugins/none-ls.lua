@@ -66,5 +66,13 @@ return {
                 end
             end,
         })
+
+        local json_format = function()
+            vim.bo.filetype = 'json'
+            vim.cmd('%!jq .')
+        end
+
+        vim.keymap.set('n', '<leader>ff', vim.lsp.buf.format, { desc = 'Format buffer' })
+        vim.keymap.set('n', '<leader>fj', json_format, { desc = 'Format buffer JSON' })
     end,
 }
