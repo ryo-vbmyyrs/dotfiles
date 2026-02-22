@@ -44,6 +44,7 @@ return {
                     end,
                 }),
                 null_ls.builtins.completion.spell,
+                null_ls.builtins.formatting.alejandra,
             },
             on_attach = function(client, bufnr)
                 if client.supports_method('textDocument/formatting') then
