@@ -6,6 +6,8 @@ return {
         null_ls.setup({
             debug = true,
             sources = {
+                null_ls.builtins.formatting.alejandra,
+                null_ls.builtins.formatting.gofmt,
                 null_ls.builtins.formatting.prettier.with({
                     prefer_local = 'node_modules/.bin',
                     extra_args = function(params)
@@ -44,7 +46,6 @@ return {
                     end,
                 }),
                 null_ls.builtins.completion.spell,
-                null_ls.builtins.formatting.alejandra,
             },
             on_attach = function(client, bufnr)
                 if client.supports_method('textDocument/formatting') then
