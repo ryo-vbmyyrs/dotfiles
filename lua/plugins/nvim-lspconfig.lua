@@ -2,11 +2,22 @@ vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(args)
         local bufnr = args.buf
         local client = vim.lsp.get_client_by_id(args.data.client_id)
-        if client.server_capabilities.completionProvider then
-            vim.bo[bufnr].omnifunc = 'v:lua.vim.lsp.omnifunc'
-        end
-        if client.server_capabilities.definitionProvider then
-            vim.bo[bufnr].tagfunc = 'v:lua.vim.lsp.tagfunc'
+
+        -- カーソル上の変数のハイライト
+        if client.server_capabilities.documentHighlightProvider then
+            local group = vim.api.nvim_create_augroup('DocumentHighlight', { clear = false })
+            vim.api.nvim_clear_autocmds({ buffer = bufnr, group = group })
+
+            vim.api.nvim_create_autocmd('CursorHold', {
+                buffer = bufnr,
+                group = group,
+                callback = vim.lsp.buf.document_highlight,
+            })
+            vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+                buffer = bufnr,
+                group = group,
+                callback = vim.lsp.buf.clear_references,
+            })
         end
     end,
 })
