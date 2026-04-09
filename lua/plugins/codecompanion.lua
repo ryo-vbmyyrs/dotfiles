@@ -1,5 +1,11 @@
 return {
     'olimorris/codecompanion.nvim',
+    cmd = {
+        'CodeCompanion',
+        'CodeCompanionChat',
+        'CodeCompanionCmd',
+        'CodeCompanionActions',
+    },
     dependencies = {
         'nvim-lua/plenary.nvim',
         'ravitemer/mcphub.nvim',
