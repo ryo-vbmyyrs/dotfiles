@@ -82,6 +82,21 @@ return {
             })
         end
 
+        local sorters = require('telescope.sorters')
+        local function filename_sorter(opts)
+            opts = opts or {}
+            return sorters.new({
+                scoring_function = function(_, prompt, entry)
+                    return 0
+                end,
+                highlighter = opts.highlighter,
+                tiebreak = function(current_entry, existing_entry, _)
+                    -- ファイル名で辞書順ソート
+                    return current_entry.filename < existing_entry.filename
+                end,
+            })
+        end
+
         local function lsp_entry_maker(opts)
             local default_maker = require('telescope.make_entry').gen_from_quickfix(opts)
             return function(entry)
@@ -115,6 +130,7 @@ return {
             pickers[picker] = {
                 previewer = jdt_previewer(),
                 entry_maker = lsp_entry_maker(),
+                sorter = filename_sorter(),
             }
         end
 
