@@ -6,6 +6,7 @@ return {
         'ravitemer/codecompanion-history.nvim',
         'lalitmee/codecompanion-spinners.nvim',
     },
+    build = false,
     config = function()
         require('codecompanion').setup({
             strategies = {

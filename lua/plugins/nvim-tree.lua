@@ -1,10 +1,3 @@
--- open File Tree when open
-local function open_nvim_tree()
-    require('nvim-tree.api').tree.open()
-end
-
-vim.api.nvim_create_autocmd({ 'VimEnter' }, { callback = open_nvim_tree })
-
 -- disable netrw
 vim.api.nvim_set_var('loaded_netrw', 1)
 vim.api.nvim_set_var('loaded_netrwPlugin', 1)
@@ -64,7 +57,16 @@ return {
                     exclude = { '.git', 'target', 'build' },
                 },
             },
-            on_attach = require('plugins/actions/nvim-tree-actions').on_attach,
+            on_attach = function(bufnr)
+                require('plugins/actions/nvim-tree-actions').on_attach(bufnr)
+            end,
+        })
+
+        -- open File Tree when open
+        vim.api.nvim_create_autocmd({ 'VimEnter' }, {
+            callback = function()
+                require('nvim-tree.api').tree.open()
+            end,
         })
     end,
 }
