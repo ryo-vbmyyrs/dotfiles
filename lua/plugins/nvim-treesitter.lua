@@ -1,11 +1,11 @@
 return {
     'nvim-treesitter/nvim-treesitter',
-    main = 'nvim-treesitter.configs',
     config = function()
-        require('nvim-treesitter.configs').setup({
+        require('nvim-treesitter').setup({
             ensure_installed = {
                 'apex',
                 'html',
+                'java',
                 'javadoc',
                 'javascript',
                 'jsdoc',
@@ -13,8 +13,10 @@ return {
                 'markdown',
                 'python',
                 'soql',
+                'terraform',
                 'tsx',
                 'typescript',
+                'xml',
             },
             sync_install = true,
             auto_install = true,
@@ -33,6 +35,13 @@ return {
             indent = {
                 enable = true,
             },
+        })
+
+        vim.api.nvim_create_autocmd('FileType', {
+            pattern = vim.tbl_keys(require('nvim-treesitter.parsers')),
+            callback = function()
+                vim.treesitter.start()
+            end,
         })
     end,
 }
