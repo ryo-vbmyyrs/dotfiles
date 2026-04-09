@@ -1,6 +1,5 @@
 return {
     'nvim-treesitter/nvim-treesitter',
-    version = '*',
     main = 'nvim-treesitter.configs',
     config = function()
         require('nvim-treesitter.configs').setup({

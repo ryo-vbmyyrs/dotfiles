@@ -11,7 +11,6 @@ vim.api.nvim_set_var('loaded_netrwPlugin', 1)
 
 return {
     'nvim-tree/nvim-tree.lua',
-    version = '*',
     lazy = false,
     dependencies = {
         'nvim-tree/nvim-web-devicons',

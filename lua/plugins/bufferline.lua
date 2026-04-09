@@ -8,7 +8,6 @@ vim.keymap.set('n', '<leader>qh', '<cmd>BufferLineCloseLeft<CR>') -- close all b
 
 return {
     'akinsho/bufferline.nvim',
-    version = '*',
     dependencies = 'nvim-tree/nvim-web-devicons',
     config = function()
         vim.opt.termguicolors = true

@@ -4,13 +4,12 @@ return {
         'williamboman/mason-lspconfig.nvim',
         'neovim/nvim-lspconfig',
     },
-    version = '*',
     event = 'VeryLazy',
     config = function()
         require('mason').setup()
         require('mason-lspconfig').setup({
             ensure_installed = {
-                'jdtls',  -- Java LSP
+                'jdtls', -- Java LSP
             },
         })
     end,

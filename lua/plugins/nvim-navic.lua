@@ -1,6 +1,5 @@
 return {
     'SmiteshP/nvim-navic',
-    version = '*',
     dependencies = {
         'neovim/nvim-lspconfig',
     },

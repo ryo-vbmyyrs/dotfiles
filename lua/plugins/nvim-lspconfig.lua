@@ -48,7 +48,6 @@ vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float) -- open diagnostic i
 
 return {
     'neovim/nvim-lspconfig',
-    version = '*',
     lazy = true,
     config = function() end,
 }
