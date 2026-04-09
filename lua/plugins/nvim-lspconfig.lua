@@ -27,6 +27,7 @@ vim.keymap.set('n', '[', '<cmd>lua vim.lsp.buf.hover()<CR>') -- show information
 vim.keymap.set('n', ']', '<cmd>lua vim.lsp.buf.definition()<CR>') -- jump to definition
 vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>') -- show list where the variable cursor on is referenced
 vim.keymap.set('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<CR>') -- rename the variable
+vim.keymap.set('n', 'gy', vim.lsp.buf.type_definition, { buffer = true }) -- go to type definition
 
 -- diagnostics (See `:h vim.diagnostic.config`)
 vim.diagnostic.config({

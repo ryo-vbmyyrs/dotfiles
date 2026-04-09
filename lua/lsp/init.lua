@@ -7,5 +7,3 @@ vim.lsp.enable('lwc_ls')
 vim.lsp.enable('marksman')
 vim.lsp.enable('pylsp')
 vim.lsp.enable('ts_ls')
-
-require('lsp.apex-ls')

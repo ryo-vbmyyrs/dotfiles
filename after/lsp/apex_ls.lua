@@ -1,6 +1,6 @@
 local path = vim.fn.stdpath('data') .. '/mason/share/apex-language-server/apex-jorje-lsp.jar'
 
-vim.lsp.config('apex_ls', {
+return {
     cmd = { 'java', '-jar', path },
     filetypes = { 'apex' },
     flags = {
@@ -13,4 +13,4 @@ vim.lsp.config('apex_ls', {
             enable_completion_statistics = true,
         },
     },
-})
+}
