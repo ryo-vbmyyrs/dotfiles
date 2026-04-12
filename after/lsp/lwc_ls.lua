@@ -6,4 +6,10 @@ return {
         '--stdio',
     },
     filetypes = { 'html', 'javascript', 'typescript' },
+    root_dir = function(bufnr, on_dir)
+        local root = vim.fs.root(bufnr, { 'sfdx-project.json' })
+        if root then
+            on_dir(root)
+        end
+    end,
 }
