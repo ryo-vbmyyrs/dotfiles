@@ -19,11 +19,6 @@ return {
             clear_env = false,
             shell = vim.o.shell,
             auto_scroll = true,
-            float_opts = {
-                border = 'curved',
-                winblend = 3,
-                title_pos = 'center',
-            },
             winbar = {
                 enabled = false,
                 name_formatter = function(term)
@@ -31,21 +26,6 @@ return {
                 end,
             },
         })
-
-        -- ここでlazygitを開く設定を追加している
-        local Terminal = require('toggleterm.terminal').Terminal
-        local lazygit = Terminal:new({ cmd = 'lazygit', hidden = true })
-
-        function _lazygit_toggle()
-            lazygit:toggle()
-        end
-
-        vim.api.nvim_set_keymap(
-            'n',
-            '<leader>lg',
-            '<cmd>lua _lazygit_toggle()<CR>',
-            { noremap = true, silent = true }
-        )
 
         vim.api.nvim_set_keymap(
             'n',
@@ -57,7 +37,6 @@ return {
         vim.keymap.set('n', '<leader>tn', function()
             local newTerm = Terminal:new({})
             newTerm:toggle()
-            print('executed')
         end, { desc = 'Open new terminal' })
     end,
 }
