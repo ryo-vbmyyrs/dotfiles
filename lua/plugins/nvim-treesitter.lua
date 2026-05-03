@@ -55,9 +55,9 @@ return {
         require('nvim-treesitter').install(ensure_install_languages)
 
         vim.api.nvim_create_autocmd('FileType', {
-            pattern = vim.tbl_keys(require('nvim-treesitter.parsers')),
-            callback = function()
-                vim.treesitter.start()
+            pattern = '*',
+            callback = function(args)
+                pcall(vim.treesitter.start, args.buf)
             end,
         })
     end,
