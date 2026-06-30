@@ -149,13 +149,6 @@ local config = {
             references = {
                 includeDecompiledSources = true,
             },
-            format = {
-                enabled = true,
-                settings = {
-                    url = vim.uri_from_fname(root_dir .. '\\config\\eclipse-java-format.xml'),
-                    profile = 'IntelliJ-Based',
-                },
-            },
         },
         signatureHelp = { enabled = true },
         completion = {
