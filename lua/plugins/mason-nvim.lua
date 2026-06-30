@@ -1,16 +1,8 @@
 return {
-    'williamboman/mason.nvim',
-    dependencies = {
-        'williamboman/mason-lspconfig.nvim',
-        'neovim/nvim-lspconfig',
+    'mason-org/mason.nvim',
+    opts = {
+        registries = {
+            'github:mason-org/mason-registry',
+        },
     },
-    event = 'VeryLazy',
-    config = function()
-        require('mason').setup()
-        require('mason-lspconfig').setup({
-            ensure_installed = {
-                'jdtls', -- Java LSP
-            },
-        })
-    end,
 }

@@ -4,7 +4,6 @@ require('options')
 require('keymaps')
 require('filetype')
 require('command')
-require('lsp')
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
@@ -47,3 +46,8 @@ require('lazy').setup({
     -- automatically check for plugin updates
     checker = { enabled = true },
 })
+
+-- LSP の有効化は lazy.setup の後に行う。
+-- capabilities 設定で cmp_nvim_lsp を require するため、lazy の require フックが
+-- 有効になっている必要がある。
+require('lsp')

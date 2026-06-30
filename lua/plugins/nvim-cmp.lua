@@ -6,7 +6,7 @@ vim.api.nvim_set_hl(
 )
 -- blue
 vim.api.nvim_set_hl(0, 'CmpItemAbbrMatch', { bg = 'NONE', fg = '#569CD6' })
-vim.api.nvim_set_hl(0, 'CmpItemAbbrMatchFuzzy', { link = 'CmpIntemAbbrMatch' })
+vim.api.nvim_set_hl(0, 'CmpItemAbbrMatchFuzzy', { link = 'CmpItemAbbrMatch' })
 -- light blue
 vim.api.nvim_set_hl(0, 'CmpItemKindVariable', { bg = 'NONE', fg = '#9CDCFE' })
 vim.api.nvim_set_hl(0, 'CmpItemKindInterface', { link = 'CmpItemKindVariable' })
@@ -67,10 +67,6 @@ return {
         end, { silent = true, desc = 'LuaSnip: Jump back' })
 
         vim.opt.completeopt = { 'menu', 'menuone' }
-        -- 共通の設定
-        vim.lsp.config('*', {
-            capabilities = require('cmp_nvim_lsp').default_capabilities(),
-        })
         cmp.setup({
             snippet = {
                 expand = function(args)

@@ -2,6 +2,19 @@ vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(args)
         local bufnr = args.buf
         local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if not client then
+            return
+        end
+
+        -- 定義ジャンプ (gd は bufferline、grt は型定義なので gD を使う)
+        vim.keymap.set(
+            'n',
+            'gD',
+            vim.lsp.buf.definition,
+            { buffer = bufnr, desc = 'LSP: jump to definition' }
+        )
+        -- ホバーは組み込みの K が keymaps.lua の K=10k と衝突するため gh を使う。
+        vim.keymap.set('n', 'gh', vim.lsp.buf.hover, { buffer = bufnr, desc = 'LSP: hover' })
 
         -- カーソル上の変数のハイライト
         if client.server_capabilities.documentHighlightProvider then
@@ -21,13 +34,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
         end
     end,
 })
-
--- keymaps
-vim.keymap.set('n', '[', '<cmd>lua vim.lsp.buf.hover()<CR>') -- show information where cursor on
-vim.keymap.set('n', ']', '<cmd>lua vim.lsp.buf.definition()<CR>') -- jump to definition
-vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>') -- show list where the variable cursor on is referenced
-vim.keymap.set('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<CR>') -- rename the variable
-vim.keymap.set('n', 'gy', vim.lsp.buf.type_definition, { buffer = true }) -- go to type definition
 
 -- diagnostics (See `:h vim.diagnostic.config`)
 vim.diagnostic.config({
