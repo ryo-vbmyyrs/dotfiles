@@ -2,7 +2,7 @@ return {
     'folke/todo-comments.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = {
-        sign = false,
+        signs = false,
         keywords = {
             FIX = { color = 'error' },
             TODO = { color = 'info' },
