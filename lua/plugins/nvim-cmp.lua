@@ -109,7 +109,7 @@ return {
                         return kind ~= require('cmp.types').lsp.CompletionItemKind.Text
                     end,
                 },
-                { name = 'nvim_lua' },
+                { name = 'lazydev', group_index = 0 },
                 { name = 'luasnip' },
                 { name = 'render-markdown' },
             }, {

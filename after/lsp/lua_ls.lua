@@ -1,36 +1,11 @@
--- `:h lspconfig-all` でlua_lsのサンプルをコピペしただけ
+-- cmd / filetypes / root_markers / codeLens / hint などは nvim-lspconfig の
+-- ベース設定 (lsp/lua_ls.lua) が提供する。Neovim API やプラグインの型 (library) は
+-- lazydev.nvim が動的に注入する。ここではベースにも lazydev にも無い差分だけ上書きする。
 return {
-    on_init = function(client)
-        if client.workspace_folders then
-            local path = client.workspace_folders[1].name
-            if
-                path ~= vim.fn.stdpath('config')
-                and (
-                    vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(
-                        path .. '/.luarc.jsonc'
-                    )
-                )
-            then
-                return
-            end
-        end
-
-        client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
-            runtime = {
-                -- Tell the language server which version of Lua you're using
-                -- (most likely LuaJIT in the case of Neovim)
-                version = 'LuaJIT',
-            },
-            -- Make the server aware of Neovim runtime files
-            workspace = {
-                checkThirdParty = false,
-                library = {
-                    vim.env.VIMRUNTIME,
-                },
-            },
-        })
-    end,
     settings = {
-        Lua = {},
+        Lua = {
+            -- Neovim は LuaJIT なので明示 (lazydev は version を設定しない)
+            runtime = { version = 'LuaJIT' },
+        },
     },
 }
