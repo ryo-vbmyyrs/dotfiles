@@ -27,6 +27,12 @@ keymap('n', '<leader>l', '<C-w>l', opts)
 -- New Buffer
 keymap('n', '<C-n>', ':ene<CR>', opts)
 
+-- Quickfix (Telescope内で <C-q> 全件送信 / <M-q> 選択送信 → 以下で巡回)
+keymap('n', ']q', ':cnext<CR>', opts) -- 次の項目へ
+keymap('n', '[q', ':cprev<CR>', opts) -- 前の項目へ
+keymap('n', '<leader>qo', ':copen<CR>', opts) -- 一覧を開く
+keymap('n', '<leader>qc', ':cclose<CR>', opts) -- 一覧を閉じる
+
 -- Split window
 keymap('n', '<leader>sk', ':split<Return><C-w>w', opts)
 keymap('n', '<leader>sl', ':vsplit<Return><C-w>w', opts)
