@@ -40,6 +40,24 @@ end
 local api = require('nvim-tree.api')
 local tree, fs, node = api.tree, api.fs, api.node
 
+local function openWithMo()
+    local nd = api.tree.get_node_under_cursor()
+    if nd == nil then
+        return
+    end
+    local cmd = { 'mo', nd.absolute_path }
+    if nd.type == 'directory' then
+        cmd = { 'mo', '-R', nd.absolute_path }
+    end
+    vim.system(cmd, { detach = true }, function(out)
+        if out.code ~= 0 then
+            vim.schedule(function()
+                vim.notify('mo: ' .. (out.stderr or '起動に失敗しました'), vim.log.levels.ERROR)
+            end)
+        end
+    end)
+end
+
 -- keymaps
 local command = {
     { '', node.open.replace_tree_buffer, 'Open: In Place' },
@@ -92,6 +110,7 @@ local command = {
     { 'f', api.live_filter.start, 'Filter start' },
     { 'F', api.live_filter.clear, 'Filter end' },
     { 'm', api.marks.toggle, 'Toggle Bookmark' },
+    { 'M', openWithMo, 'Open: mo (Markdown Viewer)' },
 
     -- { '<2-LeftMouse>',  node.open.edit,        'Open' },
 
