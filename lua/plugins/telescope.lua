@@ -2,6 +2,7 @@ return {
     'nvim-telescope/telescope.nvim',
     dependencies = {
         'nvim-lua/plenary.nvim',
+        { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
         'nvim-telescope/telescope-live-grep-args.nvim',
     },
     config = function()
@@ -118,6 +119,14 @@ return {
         local pickers = {
             find_files = {
                 hidden = true,
+                -- .git などを除外して走査（hidden=true だと .git/ を丸ごと走査してしまうため）
+                find_command = {
+                    'fdfind',
+                    '--type',
+                    'f',
+                    '--exclude',
+                    '.git',
+                },
             },
         }
         local lsp_pickers = {
@@ -171,10 +180,16 @@ return {
                     n = { ['?'] = 'which_key' },
                 },
                 winblend = 20,
-                path_display = { 'smart', 'truncate' },
+                path_display = { 'truncate' },
             },
             pickers = pickers,
             extensions = {
+                fzf = {
+                    fuzzy = true,
+                    override_generic_sorter = true,
+                    override_file_sorter = true,
+                    case_mode = 'smart_case',
+                },
                 live_grep_args = {
                     auto_quoting = true,
                     mappings = {
@@ -193,6 +208,7 @@ return {
             },
         })
 
+        require('telescope').load_extension('fzf')
         require('telescope').load_extension('live_grep_args')
 
         local builtin = require('telescope.builtin')
