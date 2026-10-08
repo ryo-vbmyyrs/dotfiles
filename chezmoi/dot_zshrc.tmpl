@@ -1,0 +1,93 @@
+# ========================================
+# PATH設定
+# ========================================
+{{ if eq .chezmoi.os "darwin" -}}
+# Homebrew で入れたツールを PATH に入れる。sheldon も Homebrew で入れているので、sheldon source より前に置く
+eval "$(/opt/homebrew/bin/brew shellenv)"
+{{ else if eq .chezmoi.os "linux" -}}
+export PATH="/snap/bin:$PATH"
+{{ end -}}
+export PATH="$HOME/.local/bin:$PATH"
+
+# プラグイン管理（sheldon）。プラグインの一覧は ~/.config/sheldon/plugins.toml
+eval "$(sheldon source)"
+
+# プロンプトの見た目。zsh 付属のテーマ adam1 を使う
+autoload -Uz promptinit
+promptinit
+prompt adam1
+
+# 同じコマンドは履歴に1件だけ残し、開いている端末どうしで履歴を共有する
+setopt histignorealldups sharehistory
+
+# EDITOR が vi でも、キー操作は emacs 風にする
+bindkey -e
+
+# 履歴を 100000 件まで残し、~/.zsh_history に保存する
+HISTSIZE=100000
+SAVEHIST=100000
+HISTFILE=~/.zsh_history
+
+# 補完機能を有効にする。この下の zstyle は補完候補の出し方
+autoload -Uz compinit
+compinit
+
+zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' completer _expand _complete _correct _approximate
+zstyle ':completion:*' format 'Completing %d'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' menu select=2
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
+zstyle ':completion:*' menu select=long
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' use-compctl false
+zstyle ':completion:*' verbose true
+
+# kill の補完で、プロセス一覧を PID に色を付けて出す
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,command'
+
+# ========================================
+# エイリアス
+# ========================================
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# ========================================
+# nixの設定
+# ========================================
+(( $+commands[direnv] )) && eval "$(direnv hook zsh)"
+
+# ========================================
+# fnm（Node のバージョン切り替え）
+# ========================================
+(( $+commands[fnm] )) && eval "$(fnm env --use-on-cd)"
+
+# ========================================
+# OSごとのツール設定
+# ========================================
+{{ if eq .chezmoi.os "linux" -}}
+# ssh-agent を起動する。Mac はログイン時に macOS が起動するので必要ない
+if [ -z "$SSH_AUTH_SOCK" ]; then
+    eval "$(ssh-agent -s)" > /dev/null
+fi
+
+# deno の公式インストーラが作る ~/.deno/env を読み、~/.deno/bin を PATH に足す。Mac は Homebrew で入れるので必要ない
+. "$HOME/.deno/env"
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+{{ else if eq .chezmoi.os "darwin" -}}
+# ls の色。macOS の ls は dircolors を使わず、CLICOLOR で色を付ける
+export CLICOLOR=1
+{{ end }}
+
+# ========================================
+# 端末固有の設定（chezmoiの管理対象外）
+# ========================================
+[ -f ~/.zshrc.local ] && . ~/.zshrc.local
