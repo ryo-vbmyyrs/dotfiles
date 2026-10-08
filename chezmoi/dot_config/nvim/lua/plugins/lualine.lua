@@ -1,0 +1,28 @@
+return {
+    'nvim-lualine/lualine.nvim',
+    dependencies = {
+        'nvim-tree/nvim-web-devicons',
+        'SmiteshP/nvim-navic',
+    },
+    config = function()
+        require('lualine').setup({
+            sections = {
+                lualine_a = { 'mode' },
+                lualine_b = { 'branch', 'diagnostics' },
+                lualine_c = {
+                    { 'filename', path = 1 },
+                    'navic',
+                },
+                lualine_x = { 'filetype' },
+                lualine_y = { 'searchcount' },
+                lualine_z = { 'location' },
+            },
+            options = {
+                globalstatus = true,
+                component_separators = { left = '', right = '' },
+                -- theme = 'solarized_dark',
+                theme = 'vscode',
+            },
+        })
+    end,
+}
