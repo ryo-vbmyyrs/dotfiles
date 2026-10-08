@@ -56,3 +56,9 @@ end
 vim.cmd('set whichwrap+=<,>,[,],h,l')
 vim.cmd([[set iskeyword+=-]])
 vim.cmd([[set formatoptions-=cro]]) -- TODO: this doesn't seem to work
+
+-- Python3 プロバイダ (Python で書かれた Neovim プラグインを動かす仕組み) を使わない。
+-- Python ファイルを開くと標準の ftplugin/python.vim が has('python3') を呼び、
+-- pynvim 入りの Python を python3, python3.14 ... python の順に探すため、開くのが遅くなる。
+-- Python 製のプラグインは使っておらず、補完は pylsp から出すので無効にしてよい。
+vim.g.loaded_python3_provider = 0
