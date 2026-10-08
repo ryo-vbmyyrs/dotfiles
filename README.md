@@ -42,7 +42,7 @@
 1. WSL2 と Ubuntu を入れる。PowerShell で `wsl --install`
 2. WSL の中でこのリポジトリを clone し、chezmoi を入れて設定ファイルを置く。手順は Mac の手順5と同じ
 3. CLI ツールは apt や各ツールの公式インストーラで入れる
-4. プロジェクトで `use flake` を使うなら、https://zero-to-nix.com/start/install/ の手順で Nix を入れ、Mac の手順7と同じコマンドで direnv と nix-direnv を入れる
+4. Nix を入れる。手順は Mac の手順6と同じ
 
 ## 日々の操作
 
