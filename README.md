@@ -11,10 +11,12 @@
   .chezmoiroot          # chezmoi の対象ディレクトリ名（chezmoi）を書いたファイル
   README.md
   Brewfile              # Mac の CLI ツールの一覧。brew bundle で入れる
+  Brewfile.local        # そのマシンだけで Homebrew で入れるもの。Git 管理しない（無くてもよい）
   chezmoi/              # ホームに置く設定ファイル。dot_zshrc.tmpl → ~/.zshrc
 ```
 
 - GUI アプリは Mac・Windows とも手で入れる。`Brewfile` にも書かない
+- どうしても Homebrew で入れたい GUI アプリ（cask）は `Brewfile.local` に書く。`Brewfile` の末尾で読み込んでいる
 - `.zshrc` と `.zshenv` は Mac と WSL で同じファイルを使う。片方でだけ必要な行は `{{ if eq .chezmoi.os "darwin" }}`（WSL は `"linux"`）で囲み、その OS でだけ出力する
 - プロジェクトごとのツール（zig、そのプロジェクトの node、python）は各リポジトリの `flake.nix` と `.envrc` で持つ
 
@@ -47,7 +49,11 @@
 ## 日々の操作
 
 Mac の CLI ツールを足すときは `Brewfile` に書いてから `brew bundle --file ~/dotfiles/Brewfile` を実行する。
-`Brewfile` に無いものを消すときは `brew bundle cleanup --file ~/dotfiles/Brewfile --force`。
+`Brewfile` と `Brewfile.local` に無いものを消すときは、まず `--force` なしで消えるものを確認してから実行する。
+```sh
+brew bundle cleanup --file ~/dotfiles/Brewfile          # 消えるものの一覧を出すだけ
+brew bundle cleanup --file ~/dotfiles/Brewfile --force  # 実際に消す
+```
 
 設定ファイルを変えるときは `chezmoi/` 配下を編集して `chezmoi apply`。`chezmoi diff` で差分が見える。
 `.zshrc` と `.zshenv` はテンプレートなので、ホームのファイルを直接編集せず `chezmoi edit ~/.zshrc` で `chezmoi/dot_zshrc.tmpl` を編集する。テンプレートでないファイルをホームで直接編集してしまったときは、`chezmoi add <ファイル>` でリポジトリ側に取り込む。
@@ -55,3 +61,4 @@ Mac の CLI ツールを足すときは `Brewfile` に書いてから `brew bund
 ## つまずく箇所
 
 - `chezmoi init` を `--source ~/dotfiles` なしで実行すると `~/.local/share/chezmoi` にもう1つ clone される
+- `brew bundle cleanup --force` は Homebrew で入れた cask（GUI アプリ）も消す。残したい cask は先に `Brewfile.local` に書いておく

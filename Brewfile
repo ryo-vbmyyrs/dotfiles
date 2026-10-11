@@ -1,5 +1,5 @@
 # Mac の CLI ツール一式。適用: brew bundle --file ~/dotfiles/Brewfile
-# GUI アプリはここに書かず手で入れる
+# GUI アプリはここに書かず手で入れる。Homebrew で入れたいものだけ、そのマシンの Brewfile.local に書く
 
 tap "hashicorp/tap"
 tap "k1LoW/tap"
@@ -10,6 +10,7 @@ brew "git"
 brew "gh"
 brew "fd"
 brew "ripgrep"
+brew "yq"
 brew "tree"
 brew "pandoc"
 brew "neovim"
@@ -33,3 +34,7 @@ cask "temurin@25"
 brew "tree-sitter-cli"
 brew "go"
 brew "rust"
+
+# マシン固有のもの（Homebrew で入れたい GUI アプリなど）は Git 管理しない Brewfile.local に書く
+local_brewfile = File.join(__dir__, "Brewfile.local")
+instance_eval(File.read(local_brewfile), local_brewfile) if File.exist?(local_brewfile)
