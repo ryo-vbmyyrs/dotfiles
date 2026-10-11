@@ -66,10 +66,18 @@ vim.keymap.set('n', '<C-[>', ':vertical resize -2<CR>', { desc = 'Decrease windo
 vim.keymap.set('n', '<C-]>', ':vertical resize +2<CR>', { desc = 'Increase window width' })
 vim.keymap.set('n', '<leader>w=', '<C-w>=', { desc = 'Equalize window sizes' })
 
--- セミコロンでレジスタにアクセスできるようにする
-for char = string.byte('a'), string.byte('z') do
-    local letter = string.char(char)
-    vim.keymap.set({ 'n', 'v' }, ';' .. letter, '"' .. letter, { noremap = true })
+-- US配列で打ちやすいようにコロンとセミコロンを入れ替える
+-- 内蔵キーボードがJIS配列のMacでは入れ替えない
+local function is_jis_keyboard()
+  if vim.fn.has('mac') == 0 then
+    return false
+  end
+  local out = vim.fn.system({ 'ioreg', '-r', '-c', 'AppleHIDKeyboardEventDriverV2', '-k', 'KeyboardLanguage', '-d', '1' })
+  return out:find('"KeyboardLanguage" = "Japanese"', 1, true) ~= nil
+end
+if not is_jis_keyboard() then
+  vim.keymap.set({ 'n', 'x' }, ';', ':', { noremap = true })
+  vim.keymap.set({ 'n', 'x' }, ':', ';', { noremap = true })
 end
 
 -- Insert Mode --

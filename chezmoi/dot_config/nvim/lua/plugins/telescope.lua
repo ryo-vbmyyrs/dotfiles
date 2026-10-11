@@ -120,8 +120,9 @@ return {
             find_files = {
                 hidden = true,
                 -- .git などを除外して走査（hidden=true だと .git/ を丸ごと走査してしまうため）
+                -- Debian/Ubuntu では fd が fdfind という名前で入るので、ある方を使う
                 find_command = {
-                    'fdfind',
+                    vim.fn.executable('fd') == 1 and 'fd' or 'fdfind',
                     '--type',
                     'f',
                     '--exclude',
