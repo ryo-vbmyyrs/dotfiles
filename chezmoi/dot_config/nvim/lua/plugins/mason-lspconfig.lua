@@ -10,6 +10,7 @@ return {
         -- 扱えないため :Mason から手動でインストールする。
         ensure_installed = {
             'cssls',
+            'eslint',
             'gopls',
             'html',
             'jdtls',

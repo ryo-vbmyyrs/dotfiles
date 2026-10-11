@@ -1,6 +1,6 @@
 return {
     'nvimtools/none-ls.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim', 'nvimtools/none-ls-extras.nvim' },
+    dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
         local null_ls = require('null-ls')
         null_ls.setup({
@@ -32,18 +32,6 @@ return {
                         '--call-parentheses',
                         'Always',
                     },
-                }),
-                require('none-ls.diagnostics.eslint').with({
-                    condition = function(utils)
-                        return utils.root_has_file({
-                            '.eslintrc.js',
-                            '.eslintrc.cjs',
-                            '.eslintrc.yaml',
-                            '.eslintrc.yml',
-                            '.eslintrc.json',
-                            '.eslintrc.config.js',
-                        })
-                    end,
                 }),
                 null_ls.builtins.completion.spell,
             },
