@@ -73,7 +73,8 @@ local function is_jis_keyboard()
     return false
   end
   local out = vim.fn.system({ 'ioreg', '-r', '-c', 'AppleHIDKeyboardEventDriverV2', '-k', 'KeyboardLanguage', '-d', '1' })
-  return out:find('"KeyboardLanguage" = "Japanese"', 1, true) ~= nil
+  -- 値は "Japanese Keyboard" などになるため前方一致で判定する
+  return out:find('"KeyboardLanguage" = "Japanese', 1, true) ~= nil
 end
 if not is_jis_keyboard() then
   vim.keymap.set({ 'n', 'x' }, ';', ':', { noremap = true })
