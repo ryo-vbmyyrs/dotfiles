@@ -1,7 +1,7 @@
 # IMPORTANT!!!!!
 
-This configuration need Neovim >= 0.12.
-Must update your Neovim.
+This configuration needs Neovim 0.12.6.
+See the root README.md for how to install it.
 
 # Install
 ## Font

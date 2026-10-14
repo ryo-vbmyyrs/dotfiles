@@ -5,6 +5,7 @@ tap "hashicorp/tap"
 tap "k1LoW/tap"
 
 # 基本CLI
+# Neovim はバージョンで設定の動きが変わるので、ここに書かず README の手順で決めたバージョンを入れる
 # git は CLT にもあるが、/usr/bin/git は DEVELOPER_DIR を見て起動するので、Nix の devShell 内（DEVELOPER_DIR が Nix の SDK）だと動かない
 brew "git"
 brew "gh"
@@ -13,7 +14,6 @@ brew "ripgrep"
 brew "yq"
 brew "tree"
 brew "pandoc"
-brew "neovim"
 brew "lazygit"
 brew "lazydocker"
 brew "chezmoi"
