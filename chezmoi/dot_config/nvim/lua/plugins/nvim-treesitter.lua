@@ -37,6 +37,7 @@ local ensure_install_languages = {
     'sosl',
     'sql',
     'terraform',
+    'tlaplus',
     'tsx',
     'typescript',
     'vim',
